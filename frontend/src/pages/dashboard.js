@@ -2,9 +2,15 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import MovieList from '@/components/MovieList'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+// import Search from '../components/SearchBar' 12/24 修正しました
+import Search from '../components/Search'
 
 const Dashboard = () => {
     const [movies, setMovies] = useState([])
+    const [searchQuery, setSearchQuery] = useState('')
+    const handleSearch = query => {
+        setSearchQuery(query)
+    }
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -34,6 +40,7 @@ const Dashboard = () => {
                 <title>Dashboard - CinemaLoveReview</title>
             </Head>
 
+            <Search onSearch={handleSearch} />
             <MovieList title="上映中の映画" movies={movies} />
         </AppLayout>
     )
