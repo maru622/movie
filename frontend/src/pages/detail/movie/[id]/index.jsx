@@ -2,6 +2,7 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import React from 'react'
 import MovieDetail from './MovieDetail'
+import ReviewForm from '@/components/ReviewForm'
 
 export default function index({ movie }) {
     return (
@@ -16,6 +17,7 @@ export default function index({ movie }) {
             </Head>
 
             <MovieDetail movie={movie} />
+            <ReviewForm />
         </AppLayout>
     )
 }
@@ -29,8 +31,8 @@ export async function getServerSideProps(context) {
             `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_API_KEY}&language=ja-JP`,
         )
         const movieJP = await responseJP.json()
-        let overview = movieJP.overview
 
+        let overview = movieJP.overview
         // 日本語のあらすじがない場合、英語版を取得
         if (!overview) {
             const responseEN = await fetch(
