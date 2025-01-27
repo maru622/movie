@@ -56,7 +56,7 @@ export default function Search({ onSearch }) {
                 <TextField
                     variant="outlined"
                     fullWidth
-                    placeholder="映画タイトルを検索"
+                    placeholder="今あなたが観たいものは？"
                     value={query}
                     onChange={handleInputChange}
                     InputProps={{
